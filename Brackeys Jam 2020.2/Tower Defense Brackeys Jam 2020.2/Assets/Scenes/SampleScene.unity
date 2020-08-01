@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 657452882}
   - component: {fileID: 657452881}
   - component: {fileID: 657452880}
-  - component: {fileID: 657452884}
+  - component: {fileID: 657452885}
   m_Layer: 0
   m_Name: Package
   m_TagString: Untagged
@@ -375,7 +375,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &657452884
+--- !u!114 &657452885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,10 +384,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 657452879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56511f57dce8a6418ee36b5a1a61ac1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e6025fedef33734590998cb78860fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  isBad: 0
+  moveSpeed: 5
+  wp: {fileID: 1330031093}
+  enemyName: '"Bob"'
+  maxHP: 3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
