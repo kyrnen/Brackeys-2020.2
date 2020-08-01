@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Security.Cryptography;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour
 {
     List<int> CheckedBy = new List<int>(); 
     bool IsBad = false;
-    int AttackID = 0;
+    int AttackID = 1;
     float Health = 100;
     float[] DamageMultiplyer = new float[] { 0.8f, 1.2f, 0.5f };
 
@@ -40,6 +36,10 @@ public class Target : MonoBehaviour
     public void SetFlagg(bool State)
     {
         IsBad = State;
+        if(IsBad == true)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
     }
 
     public int GetTypeID()

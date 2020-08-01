@@ -1,24 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.WSA;
+
 
 public class GenericTower : MonoBehaviour
 {
-    int TowerID = 0;
-    float Range = 10;
-    float ReloadTime = 1000;
+    public int TowerID = 0;
+    public float Range = 10;
+    public float ReloadTime = 500;
     float CurrentTime = 0;
     bool Charged = false;
     string TargetTag = "Package";
     Target CurrentTarget;
 
     //Interact Data
-    int DamageAmmount = 0;
-    int DamageType = 0;
-    int ScannType = 0;
-    float Probability = 0.7f;
+    public int DamageAmount = -1;
+    public int DamageType = 0;
+    public int[] ScanTypes = new int[] { 1, 2 };
 
     void Start()
     {
@@ -48,7 +45,23 @@ public class GenericTower : MonoBehaviour
         if(CurrentTarget != null)
         {
             Debug.Log(CurrentTarget);
-            CurrentTarget.AddToList(TowerID);
+
+            if(ScanTypes.Length != 0)
+            {
+                if(ScanTypes.Contains(CurrentTarget.GetTypeID()))
+                {
+                    CurrentTarget.SetFlagg(true);
+                    CurrentTarget.AddToList(TowerID);
+                    Debug.Log("Scanned Package");
+                }
+            }
+
+            if(DamageAmount != -1 && CurrentTarget.GetFlagg() == true)
+            {
+                CurrentTarget.Damage(DamageAmount,DamageType);
+                Debug.Log("Attacked Package");
+            }
+
             CurrentTarget = null;
         }
     }
