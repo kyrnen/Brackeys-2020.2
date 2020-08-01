@@ -10,8 +10,5 @@ public class CameraPan : MonoBehaviour
 
     void Update() => Move();
 
-    void Move()
-    {
-        controller.Move(new Vector3(Input.GetAxisRaw("Vertical") * -1f, 0f, Input.GetAxisRaw("Horizontal")) * moveSpeed * Time.deltaTime);
-    }
+    void Move() => controller.Move(new Vector3(Input.GetAxisRaw("Vertical") * -1f, 0f, Input.GetAxisRaw("Horizontal")) * moveSpeed * Time.deltaTime);
 }
