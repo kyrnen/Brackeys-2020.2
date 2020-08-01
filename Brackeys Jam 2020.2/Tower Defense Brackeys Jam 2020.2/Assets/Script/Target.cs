@@ -10,7 +10,8 @@ public class Target : MonoBehaviour
     List<int> CheckedBy = new List<int>(); 
     bool IsBad = false;
     int AttackID = 0;
-    int Health = 100;
+    float Health = 100;
+    float[] DamageMultiplyer = new float[] { 0.8f, 1.2f, 0.5f };
 
 
     public void AddToList(int TowerID)
@@ -22,9 +23,9 @@ public class Target : MonoBehaviour
     {
         return CheckedBy.ToArray();
     }
-    public void Damage(int Amount)
+    public void Damage(int Amount, int Type)
     {
-        Health -= Amount;
+        Health -= Amount*DamageMultiplyer[Type];
         if(Health <= 0)
         {
             Destroy(gameObject);
@@ -41,7 +42,7 @@ public class Target : MonoBehaviour
         IsBad = State;
     }
 
-    public int GetID()
+    public int GetTypeID()
     {
         return AttackID;
     }
