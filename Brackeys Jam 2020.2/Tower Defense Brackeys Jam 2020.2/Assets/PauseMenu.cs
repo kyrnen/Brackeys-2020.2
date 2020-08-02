@@ -1,7 +1,7 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
@@ -21,16 +21,29 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-    void Resume()
+    public void Resume()
     {
         PauseMenuUi.SetActive(false);
         Time.timeScale = 1;
         GameIsPaused = false;
     }
-    void Pause()
+    public void Pause()
     {
         PauseMenuUi.SetActive(true);
         Time.timeScale = 0;
         GameIsPaused = true;
+    }
+    public void loadmenu()
+    {
+        SceneManager.LoadScene("MainMenu"); 
+        Debug.Log("1");
+        Time.timeScale = 1;
+
+    }
+
+    public void quittingame()
+    {
+        Debug.Log("quittingame");
+        Application.Quit();
     }
 }
