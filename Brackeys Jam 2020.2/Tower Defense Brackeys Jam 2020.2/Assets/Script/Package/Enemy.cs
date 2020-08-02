@@ -1,7 +1,26 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class Enemy : PackageClass
 {
+    public Slider slider;
+
+    public Gradient gradient;
+
+    public Image fill;
+
+    public int MaxHealth = 100;
+
+    public int currenthealth;
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+    }
+    public void SetMaxHealth(int health)
+    {
+        slider.maxValue = health;
+        slider.value = health;
+        fill.color = gradient.Evaluate(1f);
+    }
     [SerializeField] private string enemyName;
 
     private float hp;
@@ -12,6 +31,8 @@ public class Enemy : PackageClass
     {
         hp = maxHP;
         Intro();
+        SetMaxHealth(MaxHealth);
+        currenthealth = MaxHealth;
     }
     private void Intro()
     {
@@ -33,5 +54,19 @@ public class Enemy : PackageClass
                 Destroy(gameObject);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
+    }
+
+
+    void TakeDamage(int damage)
+    {
+        currenthealth -= damage;
+        SetHealth(currenthealth);
+
+        fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
