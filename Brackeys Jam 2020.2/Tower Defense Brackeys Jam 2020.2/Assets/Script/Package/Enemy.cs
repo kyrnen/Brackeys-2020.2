@@ -23,20 +23,16 @@ public class Enemy : PackageClass
     }
     [SerializeField] private string enemyName;
 
-    private float hp;
-
-    [SerializeField] private float maxHP;
 
     private void Start()
     {
-        hp = maxHP;
+        currenthealth = MaxHealth;
         Intro();
         SetMaxHealth(MaxHealth);
-        currenthealth = MaxHealth;
     }
     private void Intro()
     {
-        Debug.Log(enemyName + ", " + hp);
+        Debug.Log(enemyName + ", " + currenthealth);
     }
 
     private void Update()
