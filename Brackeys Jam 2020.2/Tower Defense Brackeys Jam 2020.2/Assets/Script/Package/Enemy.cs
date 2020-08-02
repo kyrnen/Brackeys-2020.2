@@ -8,7 +8,7 @@ public class Enemy : PackageClass
 
     public Image fill;
 
-    public int MaxHealth = 100;
+    public int MaxHealth;
 
     public int currenthealth;
     public void SetHealth(int health)
@@ -64,5 +64,7 @@ public class Enemy : PackageClass
         SetHealth(currenthealth);
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        SetHealth(currenthealth);
     }
+
 }
