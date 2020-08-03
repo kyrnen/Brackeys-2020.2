@@ -49,10 +49,10 @@ public class Enemy : PackageClass
             {
                 wpIndex++;
             }
-            else
+         /* else
             {
                 Destroy(gameObject);
-            }
+            } */
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

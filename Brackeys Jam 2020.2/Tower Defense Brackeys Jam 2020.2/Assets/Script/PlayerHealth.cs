@@ -3,8 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth instance;
+
     [SerializeField]
     float health = 100f;
+
+    void Start() => instance = this;
 
     public void TakeDamage(float amnt)
     {
