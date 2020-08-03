@@ -59,6 +59,11 @@ public class Enemy : PackageClass
         {
             TakeDamage(20);
         }
+        if (currenthealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
 
