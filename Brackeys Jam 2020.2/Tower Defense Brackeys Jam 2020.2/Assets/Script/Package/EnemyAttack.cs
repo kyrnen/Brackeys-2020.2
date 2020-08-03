@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class EnemyAttack : MonoBehaviour
 {
     PlayerHealth health;
-    bool canAttack = true;
-    [SerializeField]
-    float attackDelay;
     [SerializeField]
     float attackDistance;
     [SerializeField]
@@ -17,18 +13,14 @@ public class EnemyAttack : MonoBehaviour
         health = PlayerHealth.instance;
     }
 
-
     void Update()
     {
-        if (Vector3.Distance(transform.position, health.transform.position) <= attackDistance && canAttack) StartCoroutine(DealDamage());
+        if (Vector3.Distance(transform.position, health.transform.position) <= attackDistance) DealDamage();
     }
 
-    IEnumerator DealDamage()
+    void DealDamage()
     {
-        Debug.Log("ATTACKING");
-        canAttack = false;
         health.TakeDamage(damage);
-        yield return new WaitForSeconds(attackDelay);
-        canAttack = true;
+        Destroy(gameObject);
     }
 }

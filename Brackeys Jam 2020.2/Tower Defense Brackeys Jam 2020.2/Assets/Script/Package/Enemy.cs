@@ -49,10 +49,6 @@ public class Enemy : PackageClass
             {
                 wpIndex++;
             }
-         /* else
-            {
-                Destroy(gameObject);
-            } */
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -63,14 +59,11 @@ public class Enemy : PackageClass
         {
             Destroy(gameObject);
         }
-
     }
-
 
     void TakeDamage(int damage)
     {
         currenthealth -= damage;
-        SetHealth(currenthealth);
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
         SetHealth(currenthealth);
