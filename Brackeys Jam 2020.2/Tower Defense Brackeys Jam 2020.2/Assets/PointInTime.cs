@@ -1,7 +1,5 @@
 ﻿
 using UnityEngine;
-using UnityEngine.UIElements;
-
 public class PointInTime
 {
 	public Vector3 Poition;

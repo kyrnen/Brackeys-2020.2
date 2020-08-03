@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class RewindTime : MonoBehaviour
 {
     private bool isRewinding = false;
-    Rigidbody rb;
     List<PointInTime> PointInTime;
     void Start()
     {
         PointInTime = new List<PointInTime>();
-        }
+    }
 
     void FixedUpdate()
     {
@@ -47,6 +45,7 @@ public class RewindTime : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartRewind();
+            Debug.Log("d");
         }
     }
     void StartRewind()
