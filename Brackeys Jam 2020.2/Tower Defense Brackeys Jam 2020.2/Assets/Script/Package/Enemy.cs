@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
 public class Enemy : PackageClass
 {
     public Slider slider;
@@ -11,18 +12,20 @@ public class Enemy : PackageClass
     public int MaxHealth;
 
     public int currenthealth;
+
     public void SetHealth(int health)
     {
         slider.value = health;
     }
+
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
         slider.value = health;
         fill.color = gradient.Evaluate(1f);
     }
-    [SerializeField] private string enemyName;
 
+    [SerializeField] private string enemyName;
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class Enemy : PackageClass
         Intro();
         SetMaxHealth(MaxHealth);
     }
+
     private void Intro()
     {
         Debug.Log(enemyName + ", " + currenthealth);
@@ -66,5 +70,4 @@ public class Enemy : PackageClass
         fill.color = gradient.Evaluate(slider.normalizedValue);
         SetHealth(currenthealth);
     }
-
 }
