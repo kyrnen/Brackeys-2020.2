@@ -13,6 +13,8 @@ public class Enemy : PackageClass
 
     public int currenthealth;
 
+    [SerializeField] private bool moveForward = true;
+
     public void SetHealth(int health)
     {
         slider.value = health;
@@ -42,19 +44,42 @@ public class Enemy : PackageClass
     private void Update()
     {
         Move();
+        CheckDirection();
+        Damage();
+    }
 
-        if (Vector3.Distance(transform.position, wp.waypoints[wpIndex].position) < 0.1f)
+    void CheckDirection()
+    {
+        if (Mathf.Abs(Vector3.Distance(transform.position, wp.waypoints[wpIndex].position)) < 0.1f)
         {
-            if (wpIndex < wp.waypoints.Length - 1)
+            if (!moveForward)
             {
-                wpIndex++;
+                //wp.FlipTraversal();
+                if (wpIndex > 0)
+                {
+                    wpIndex--;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {
-                Destroy(gameObject);
+                if (wpIndex < wp.waypoints.Length - 1)
+                {
+                    wpIndex++;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
+    }
 
+    void Damage()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
@@ -63,9 +88,7 @@ public class Enemy : PackageClass
         {
             Destroy(gameObject);
         }
-
     }
-
 
     void TakeDamage(int damage)
     {
@@ -74,5 +97,10 @@ public class Enemy : PackageClass
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
         SetHealth(currenthealth);
+    }
+
+    void FlipDirection()
+    {
+        moveForward = !moveForward;
     }
 }
