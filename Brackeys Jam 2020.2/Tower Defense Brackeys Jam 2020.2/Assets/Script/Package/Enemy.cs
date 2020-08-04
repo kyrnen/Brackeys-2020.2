@@ -4,13 +4,10 @@ using UnityEngine.UI;
 public class Enemy : PackageClass
 {
     public Slider slider;
-
     public Gradient gradient;
-
     public Image fill;
 
     public int MaxHealth;
-
     public int currenthealth;
 
     [SerializeField] private bool moveForward = true;
