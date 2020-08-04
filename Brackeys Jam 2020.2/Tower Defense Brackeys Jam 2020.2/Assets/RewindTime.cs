@@ -5,6 +5,7 @@ using UnityEngine;
 public class RewindTime : MonoBehaviour
 {
     private bool isRewinding = false;
+    public float timetorewind = 2f;
     List<PointInTime> PointInTime;
     void Start()
     {
@@ -21,7 +22,7 @@ public class RewindTime : MonoBehaviour
 
     void Record()
     {
-        if(PointInTime.Count > Mathf.Round(5f / Time.fixedDeltaTime))
+        if(PointInTime.Count > Mathf.Round(timetorewind / Time.fixedDeltaTime))
         {
             PointInTime.RemoveAt(PointInTime.Count - 1);
         }
@@ -45,7 +46,6 @@ public class RewindTime : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartRewind();
-            Debug.Log("d");
         }
     }
     void StartRewind()
