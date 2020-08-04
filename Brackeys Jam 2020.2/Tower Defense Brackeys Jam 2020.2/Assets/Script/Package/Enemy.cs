@@ -10,6 +10,10 @@ public class Enemy : PackageClass
     public int MaxHealth;
     public int currenthealth;
 
+    public Text Moneycount;
+
+    public int MoneyForKill = 1;
+
     [SerializeField] private bool moveForward = true;
 
     public void SetHealth(int health)
@@ -83,6 +87,7 @@ public class Enemy : PackageClass
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
+            Moneycount.text = Moneycount.text + MoneyForKill.ToString();
         }
     }
 
