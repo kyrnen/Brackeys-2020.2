@@ -54,7 +54,6 @@ public class Enemy : PackageClass
         {
             if (!moveForward)
             {
-                //wp.FlipTraversal();
                 if (wpIndex > 0)
                 {
                     wpIndex--;
