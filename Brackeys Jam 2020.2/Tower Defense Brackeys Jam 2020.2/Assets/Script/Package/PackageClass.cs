@@ -19,6 +19,11 @@ public class PackageClass : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, wp.waypoints[wpIndex].position, moveSpeed * Time.deltaTime);
 
+        ChangeDirection();
+    }
+
+    protected virtual void ChangeDirection()
+    {
         Vector3 dir = wp.waypoints[wpIndex].position - transform.position;
         float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
