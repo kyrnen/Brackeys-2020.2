@@ -59,12 +59,20 @@ public class Enemy : PackageClass
                 {
                     wpIndex--;
                 }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {
                 if (wpIndex < wp.waypoints.Length - 1)
                 {
                     wpIndex++;
+                }
+                else
+                {
+                    Destroy(gameObject);
                 }
             }
         }
