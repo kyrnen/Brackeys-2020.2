@@ -6,12 +6,20 @@ public class Turret : MonoBehaviour
 {
 
     private Transform target;
+    
+    [Header("Attributes")]
     public float range = 5f;
-
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+    
+    [Header ("Setup Fields")]
     public string enemyTag = "Package";
-
     public Transform rotatingObject;
     public float turnSpeed = 10f;
+   
+    public GameObject bulletPref;
+    public Transform firePoint;
+    
 
     // Use this for initialization
     void Start()
@@ -33,6 +41,24 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(bulletPref, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if(bullet != null)
+        {
+            bullet.Seek(target);
+        }
     }
 
     void UpdateTarget()

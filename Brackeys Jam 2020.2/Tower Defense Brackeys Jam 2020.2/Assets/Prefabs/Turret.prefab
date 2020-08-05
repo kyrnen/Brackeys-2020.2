@@ -201,6 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4389992604443330428}
+  - component: {fileID: 8263024672671954211}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -223,6 +224,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8263024672671954211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389992604443330429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61f1803f49814b4c88ef822446d0a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  fireRate: 1
+  enemyTag: Package
+  rotatingObject: {fileID: 4389992604976042570}
+  turnSpeed: 10
+  bulletPref: {fileID: 8302714137369726113, guid: 9d66de77f9da21b4fbd37a557c7841b8, type: 3}
+  firePoint: {fileID: 8069819876810816639}
 --- !u!1 &4389992604976042571
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +252,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4389992604976042570}
-  - component: {fileID: 4389992604976042569}
   m_Layer: 0
   m_Name: Rotating Component
   m_TagString: Untagged
@@ -252,22 +271,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4389992603998710172}
+  - {fileID: 8069819876810816639}
   m_Father: {fileID: 4389992604443330428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &4389992604976042569
-MonoBehaviour:
+--- !u!1 &8438358478527830337
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389992604976042571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61f1803f49814b4c88ef822446d0a04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5
-  enemyTag: Package
-  rotatingObject: {fileID: 4389992604976042570}
-  turnSpeed: 10
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8069819876810816639}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8069819876810816639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438358478527830337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.369, z: 1.156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4389992604976042570}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
