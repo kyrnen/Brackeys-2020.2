@@ -91,24 +91,6 @@ public class Enemy : PackageClass
         }
     }
 
-    protected override void ChangeDirection()
-    {
-        Vector3 dir;
-
-        if (!moveForward && wpIndex != wp.waypoints.Length - 1)
-        {
-            dir = wp.waypoints[wpIndex + 1].position - transform.position;
-        }
-        else
-        {
-            dir = wp.waypoints[wpIndex].position - transform.position;
-        }
-
-        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
-
-    }
-
     void TakeDamage(int damage)
     {
         currenthealth -= damage;
