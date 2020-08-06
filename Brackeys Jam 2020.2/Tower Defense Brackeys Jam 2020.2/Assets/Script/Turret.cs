@@ -53,7 +53,7 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        if (target.gameObject.GetComponent<Enemy>().CheckScannedAndBad())
+        if (target.gameObject.GetComponent<Enemy>().isBad)
         {
             LockOnTarget();
 

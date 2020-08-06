@@ -9,7 +9,8 @@ public class PackageClass : MonoBehaviour
     [SerializeField] protected bool moveForward = true;
     [SerializeField] protected Waypoints wp;
 
-    protected bool scanned = false;
+    //set false later
+    [SerializeField] protected bool scanned = true;
 
     protected int wpIndex = 0;
 
