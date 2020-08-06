@@ -9,6 +9,9 @@ public class PackageClass : MonoBehaviour
     [SerializeField] protected bool moveForward = true;
     [SerializeField] protected Waypoints wp;
 
+    //set false later
+    [SerializeField] protected bool scanned = true;
+
     protected int wpIndex = 0;
 
     private void Awake()
@@ -29,4 +32,18 @@ public class PackageClass : MonoBehaviour
         float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
     }
+
+    public bool CheckScannedAndBad()
+    {
+        if(scanned)
+            return isBad;
+        return scanned;
+    }
+
+    public void SetScanned()
+    {
+        if (!scanned)
+            scanned = true;
+    }
+
 }
