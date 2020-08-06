@@ -3,6 +3,7 @@
 public class PackageClass : MonoBehaviour
 {
     public bool isBad;
+    public int power = 20;
     public float moveSpeed;
 
     [SerializeField] protected Waypoints wp;

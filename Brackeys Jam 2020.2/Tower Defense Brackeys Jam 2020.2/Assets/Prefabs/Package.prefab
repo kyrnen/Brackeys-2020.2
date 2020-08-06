@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7289254777614762266}
   - component: {fileID: 7289254777614762267}
   - component: {fileID: 7289254777614762270}
-  - component: {fileID: 7289254777614762271}
+  - component: {fileID: 6687822411324338206}
   m_Layer: 0
   m_Name: Package
   m_TagString: Package
@@ -202,7 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6025fedef33734590998cb78860fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBad: 0
+  isBad: 1
+  power: 20
   moveSpeed: 5
   wp: {fileID: 0}
   slider: {fileID: 7289254777251123851}
@@ -242,29 +243,22 @@ MonoBehaviour:
   MoneyForKill: 1
   moveForward: 1
   enemyName: Bob
---- !u!114 &7289254777614762271
-MonoBehaviour:
+--- !u!54 &6687822411324338206
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7289254777614762244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ba83b9f7e99134c9adbc99e1b658cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waves:
-  - name: sdfsdfs
-    enemy: {fileID: 7289254777614762264}
-    count: 2
-    rate: 1
-  - name: sfdsf
-    enemy: {fileID: 7289254777614762264}
-    count: 123
-    rate: 1
-  timeBettweenWaves: 5
-  wavecountdown: 0
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
 --- !u!1 &7289254777716588246
 GameObject:
   m_ObjectHideFlags: 0
