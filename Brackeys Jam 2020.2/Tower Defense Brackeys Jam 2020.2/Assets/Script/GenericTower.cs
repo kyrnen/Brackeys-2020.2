@@ -13,7 +13,8 @@ public class GenericTower : MonoBehaviour
     string TargetTag = "Package";
     Target CurrentTarget;
     bool LookedOn = false;
-    float InRangeRotation = 1;
+    public float InRangeRotation = 1;
+    public float turnspeed = 10;
 
     //Interact Data
     public int DamageAmount = -1;
