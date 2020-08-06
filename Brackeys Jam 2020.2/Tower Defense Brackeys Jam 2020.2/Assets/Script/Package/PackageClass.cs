@@ -5,7 +5,8 @@ public class PackageClass : MonoBehaviour
     public bool isBad;
     public int power = 20;
     public float moveSpeed;
-
+    
+    [SerializeField] protected bool moveForward = true;
     [SerializeField] protected Waypoints wp;
 
     protected int wpIndex = 0;
