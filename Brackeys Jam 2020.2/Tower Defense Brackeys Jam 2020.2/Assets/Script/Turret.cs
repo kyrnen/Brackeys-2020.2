@@ -94,9 +94,7 @@ public class Turret : MonoBehaviour
 
     void LockOnTarget()
     {
-        //Lock onto target
-        Debug.Log(target.gameObject.name);
-        
+        //Lock onto target        
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
