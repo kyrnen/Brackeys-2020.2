@@ -15,7 +15,8 @@ public class Enemy : PackageClass
     public int MoneyForKill = 1;
 
     [SerializeField] private bool moveForward = true;
-
+    [SerializeField] private string enemyName;
+    
     public void SetHealth(int health)
     {
         slider.value = health;
@@ -27,8 +28,6 @@ public class Enemy : PackageClass
         slider.value = health;
         fill.color = gradient.Evaluate(1f);
     }
-
-    [SerializeField] private string enemyName;
 
     private void Start()
     {
@@ -69,10 +68,6 @@ public class Enemy : PackageClass
                 if (wpIndex < wp.waypoints.Length - 1)
                 {
                     wpIndex++;
-                }
-                else
-                {
-                    Destroy(gameObject);
                 }
             }
         }
