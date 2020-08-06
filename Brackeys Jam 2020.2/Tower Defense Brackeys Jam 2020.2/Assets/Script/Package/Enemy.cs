@@ -12,7 +12,8 @@ public class Enemy : PackageClass
 
     public Text Moneycount;
 
-    public int MoneyForKill = 1;
+    public int MoneyForKill = 200;
+
 
     [SerializeField] private bool moveForward = true;
     [SerializeField] private string enemyName;
@@ -34,7 +35,6 @@ public class Enemy : PackageClass
         currenthealth = MaxHealth;
         Intro();
         SetMaxHealth(MaxHealth);
-
     }
 
     private void Intro()
@@ -78,8 +78,8 @@ public class Enemy : PackageClass
 
         if (currenthealth <= 0)
         {
+            GetComponent<MoneyManager>().AmountOfmoney = GetComponent<MoneyManager>().AmountOfmoney + MoneyForKill;
             Destroy(gameObject);
-            Moneycount.text = Moneycount.text + MoneyForKill.ToString();
         }
     }
 
