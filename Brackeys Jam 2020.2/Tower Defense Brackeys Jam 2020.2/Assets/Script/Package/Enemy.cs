@@ -15,7 +15,7 @@ public class Enemy : PackageClass
     public int MoneyForKill = 200;
 
 
-    [SerializeField] private bool moveForward = true;
+    
     [SerializeField] private string enemyName;
     
     public void SetHealth(int health)
@@ -110,8 +110,13 @@ public class Enemy : PackageClass
         SetHealth(currenthealth);
     }
 
-    void FlipDirection()
+    public void FlipDirection()
     {
         moveForward = !moveForward;
+    }
+
+    public bool GetDirection()
+    {
+        return moveForward;
     }
 }

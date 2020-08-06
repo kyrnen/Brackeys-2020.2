@@ -7,17 +7,27 @@ public class Turret : MonoBehaviour
 
     private Transform target;
     
-    [Header("Attributes")]
+    [Header("General")]
     public float range = 5f;
+
+    [Header("Use Bullets (default)")]
+    public GameObject bulletPref;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+
+    [Header("Use Reversal Beam")]
+    public bool useBeam = false;
+    public LineRenderer lineRender;
+    public float delay = 5f;
+    public float delayMax = 5f;
+
     
     [Header ("Setup Fields")]
     public string enemyTag = "Package";
     public Transform rotatingObject;
     public float turnSpeed = 10f;
    
-    public GameObject bulletPref;
+    
     public Transform firePoint;
     
 
@@ -32,24 +42,72 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
         {
+            if(useBeam)
+            {
+                if(lineRender.enabled)
+                    lineRender.enabled = false;
+            }
             return;
         }
 
         if (target.gameObject.GetComponent<Enemy>().isBad)
-        { 
-            //Lock onto target
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            if (fireCountdown <= 0f)
-            {
-                Shoot();
-                fireCountdown = 1f / fireRate;
-            }
-        }
+        {
+            LockOnTarget();
 
-        fireCountdown -= Time.deltaTime;
+            if (useBeam)
+            { 
+                if (delay == delayMax)
+                {
+                    Beam();
+                    target.gameObject.GetComponent<Enemy>().FlipDirection();
+                    delay -= Time.deltaTime;
+                }
+                else if (delay > delayMax / 2)
+                {
+                    Beam();
+                    delay -= Time.deltaTime;
+                }
+                else if (delay < delayMax /2)
+                {
+                    lineRender.enabled = false;
+                    delay -= Time.deltaTime;
+                }
+                else if (delay <= 0f)
+                {
+                    delay = delayMax;
+                }
+                
+            }
+            else
+            {
+                if (fireCountdown <= 0f)
+                {
+                    Shoot();
+                    fireCountdown = 1f / fireRate;
+                }
+            }
+
+            fireCountdown -= Time.deltaTime;
+        }
+        
+    }
+
+    void LockOnTarget()
+    {
+        //Lock onto target        
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
+    void Beam()
+    {
+        if (!lineRender.enabled)
+            lineRender.enabled = true;
+
+        lineRender.SetPosition(0, firePoint.position);
+        lineRender.SetPosition(1, target.position);
     }
 
     void Shoot()
