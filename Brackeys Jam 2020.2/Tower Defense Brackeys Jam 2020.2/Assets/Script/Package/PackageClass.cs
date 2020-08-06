@@ -7,10 +7,9 @@ public class PackageClass : MonoBehaviour
 
     [SerializeField] protected Waypoints wp;
 
-
     protected int wpIndex = 0;
 
-    private void Start()
+    private void Awake()
     {
         wp = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
     }

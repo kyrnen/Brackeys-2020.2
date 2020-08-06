@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+public class WaveManager : MonoBehaviour
 {
 	public enum SpawnState { SPAWNING, WAITING, COUNTING }
 	[System.Serializable]
@@ -14,11 +12,12 @@ public class WaveSpawner : MonoBehaviour
 		public Transform enemy;
 		public int count;
 		public float rate;
-
 	}
 
 	public Wave[] waves;
 	private int nextwave = 0;
+
+	public Transform[] spawnPoints;
 	public float timeBettweenWaves = 5f;
 	public float wavecountdown;
 	private float searchcountdown = 1f;
@@ -26,6 +25,10 @@ public class WaveSpawner : MonoBehaviour
 	private SpawnState state = SpawnState.COUNTING;
 	void Start()
 	{
+		if (spawnPoints.Length == 0)
+		{
+			Debug.LogError("no spawn points refrened");
+		}
 		wavecountdown = timeBettweenWaves;
 
 	}
@@ -35,8 +38,7 @@ public class WaveSpawner : MonoBehaviour
 		{
 			if (!EnemyIsAlive())
 			{
-				//begin a new round
-
+				WaveCompleted();
 			}
 			else
 				return;
@@ -60,14 +62,26 @@ public class WaveSpawner : MonoBehaviour
 		if (searchcountdown <= 0f)
 		{
 			searchcountdown = 1f;
-			if (GameObject.FindGameObjectWithTag("Enemy") == null)
+			if (GameObject.FindGameObjectWithTag("Package") == null)
 			{
 				return false;
+				
 			}
 		}
 		return true;
 	}
 
+	void WaveCompleted() {
+		Debug.Log("Wave Completed");
+		state = SpawnState.COUNTING;
+		wavecountdown = timeBettweenWaves;
+		if(nextwave + 1 > waves.Length - 1)
+		{
+			nextwave = 0;
+			Debug.Log("Completed all waves ");
+		}
+		nextwave++;
+	}
 
 	IEnumerator Spawnwaves(Wave _wave)
 	{
@@ -85,7 +99,8 @@ public class WaveSpawner : MonoBehaviour
 
 	void SpwanEnemy(Transform _enemy)
 	{
-		Instantiate(_enemy, transform.position, transform.rotation);
+
+		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+		Instantiate(_enemy, _sp.position, _sp.rotation);	
 	}
 }
-

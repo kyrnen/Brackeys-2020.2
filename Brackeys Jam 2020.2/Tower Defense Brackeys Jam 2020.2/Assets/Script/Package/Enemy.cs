@@ -35,6 +35,7 @@ public class Enemy : PackageClass
         currenthealth = MaxHealth;
         Intro();
         SetMaxHealth(MaxHealth);
+
     }
 
     private void Intro()
@@ -77,7 +78,6 @@ public class Enemy : PackageClass
             }
         }
     }
-
     void Damage()
     {
         if (Input.GetKeyDown(KeyCode.Space))
