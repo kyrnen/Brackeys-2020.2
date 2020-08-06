@@ -7,6 +7,7 @@ public class GenericTower : MonoBehaviour
     public int TowerID = 0;
     public float Range = 10;
     public float ReloadTime = 500;
+    public int Health = 500;
     float CurrentTime = 0;
     bool Charged = false;
     string TargetTag = "Package";
