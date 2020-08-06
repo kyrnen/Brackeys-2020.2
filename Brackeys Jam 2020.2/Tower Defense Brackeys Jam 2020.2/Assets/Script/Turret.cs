@@ -21,6 +21,9 @@ public class Turret : MonoBehaviour
     public float delay = 5f;
     public float delayMax = 5f;
 
+    [Header("Use Scan Beam")]
+    public bool useScanner = false;
+
     
     [Header ("Setup Fields")]
     public string enemyTag = "Package";
@@ -50,7 +53,7 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        if (target.gameObject.GetComponent<Enemy>().isBad)
+        if (target.gameObject.GetComponent<Enemy>().CheckScannedAndBad())
         {
             LockOnTarget();
 
@@ -77,6 +80,11 @@ public class Turret : MonoBehaviour
                     delay = delayMax;
                 }
                 
+            }
+            else if (useScanner)
+            {
+                //constantly tag with scanned
+
             }
             else
             {

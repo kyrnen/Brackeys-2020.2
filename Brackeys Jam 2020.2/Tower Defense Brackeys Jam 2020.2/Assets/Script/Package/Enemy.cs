@@ -114,9 +114,4 @@ public class Enemy : PackageClass
     {
         moveForward = !moveForward;
     }
-
-    public bool GetDirection()
-    {
-        return moveForward;
-    }
 }
