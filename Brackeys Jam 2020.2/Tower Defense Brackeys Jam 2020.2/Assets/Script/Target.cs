@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
     bool IsBad = false;
     int AttackID = 1;
     float Health = 100;
+    public MoneyManager MM;
     float[] DamageMultiplyer = new float[] { 0.8f, 1.2f, 0.5f };
 
     public void AddToList(int TowerID)
@@ -24,7 +25,9 @@ public class Target : MonoBehaviour
         Health -= Amount * DamageMultiplyer[Type];
         if (Health <= 0)
         {
+            MM.EnenyDied();
             Destroy(gameObject);
+
         }
     }
 

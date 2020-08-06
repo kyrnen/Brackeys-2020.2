@@ -10,22 +10,18 @@ public class MoneyManager : MonoBehaviour
     
     public int AmountOfmoney = 1000;
     public Text Text;
-    void Start()
+    void Awake()
     {
         Text.text = AmountOfmoney.ToString("F2");
-        enemyClass = GameObject.FindGameObjectWithTag("Package").GetComponent<Enemy>();
-        Debug.Log(enemyClass.name);
     }
 
     void Update()
     {
-        if (enemyClass.currenthealth <= 0)
-        {
-            AmountOfmoney = AmountOfmoney + 100;
-            Debug.Log("Guy");
-        }
-        else
-            return;
         Text.text = AmountOfmoney.ToString("F2");
+    }
+
+    public void EnenyDied()
+    {
+        AmountOfmoney += 100;
     }
 }

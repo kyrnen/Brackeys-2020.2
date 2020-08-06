@@ -6,10 +6,11 @@ public class Enemy : PackageClass
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public int AmountOfmoney = 1000;
 
     public int MaxHealth;
     public int currenthealth;
+
+    public MoneyManager moneyManager;
     
     [SerializeField] private string enemyName;
     
@@ -74,6 +75,7 @@ public class Enemy : PackageClass
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
+
         }
     }
 
