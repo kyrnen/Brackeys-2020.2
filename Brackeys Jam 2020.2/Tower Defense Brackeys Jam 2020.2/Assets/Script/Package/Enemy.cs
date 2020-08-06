@@ -77,7 +77,7 @@ public class Enemy : PackageClass
             }
         }
     }
-    void Damage()
+    public void Damage()
     {
         TakeDamage(20);
 
