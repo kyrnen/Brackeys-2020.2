@@ -158,6 +158,7 @@ MonoBehaviour:
   TowerID: 0
   Range: 10
   ReloadTime: 500
+  Health: 500
   DamageAmount: -1
   DamageType: 0
   ScanTypes: 0100000002000000
@@ -339,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606881206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -422,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746020366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -463,6 +464,7 @@ MonoBehaviour:
   TowerID: 1
   Range: 10
   ReloadTime: 100
+  Health: 500
   DamageAmount: 25
   DamageType: 0
   ScanTypes: 

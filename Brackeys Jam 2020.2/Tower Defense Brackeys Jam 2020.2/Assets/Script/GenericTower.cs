@@ -12,6 +12,8 @@ public class GenericTower : MonoBehaviour
     bool Charged = false;
     string TargetTag = "Package";
     Target CurrentTarget;
+    bool LookedOn = false;
+    float InRangeRotation = 1;
 
     //Interact Data
     public int DamageAmount = -1;
@@ -24,9 +26,16 @@ public class GenericTower : MonoBehaviour
 
     void Update()
     {
-        if (Charged)
+        if (Charged && CurrentTarget == null)
         {
-            Activate();
+            GetPackages();
+        }
+        else if(Charged && CurrentTarget != null)
+        {
+            if(LockOnTarget() <= InRangeRotation)
+            {
+                Activate();
+            }
         }
         else if(CurrentTime <= ReloadTime)
         {
@@ -42,7 +51,6 @@ public class GenericTower : MonoBehaviour
 
     void Activate()
     {
-        GetPackages();
         if(CurrentTarget != null)
         {
             Debug.Log(CurrentTarget);
@@ -65,6 +73,16 @@ public class GenericTower : MonoBehaviour
 
             CurrentTarget = null;
         }
+    }
+
+    float LockOnTarget()
+    {
+        //Lock onto target        
+        Vector3 dir = CurrentTarget.transform.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        return transform.rotation.y;
     }
 
     void GetPackages()
