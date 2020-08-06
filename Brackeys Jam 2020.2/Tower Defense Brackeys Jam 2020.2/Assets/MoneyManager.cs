@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-    public Enemy enemyClass;
-    
     public int AmountOfmoney = 1000;
     public Text Text;
     void Awake()

@@ -12,7 +12,6 @@ public class GenericTower : MonoBehaviour
     bool Charged = false;
     string TargetTag = "Package";
     Target CurrentTarget;
-    bool LookedOn = false;
     public float InRangeRotation = 1;
     public float turnSpeed = 10;
 
@@ -36,6 +35,7 @@ public class GenericTower : MonoBehaviour
             if(LockOnTarget() <= InRangeRotation)
             {
                 Activate();
+                Debug.Log("Activated");
             }
         }
         else if(CurrentTime <= ReloadTime)
@@ -47,7 +47,6 @@ public class GenericTower : MonoBehaviour
             Charged = true;
             CurrentTime = 0;
         }
-        Debug.Log(CurrentTime);
     }
 
     void Activate()
@@ -83,7 +82,9 @@ public class GenericTower : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        return transform.rotation.y;
+        float RotationChange = lookRotation.eulerAngles.y - rotation.y;
+        Debug.Log(RotationChange);
+        return RotationChange;
     }
 
     void GetPackages()
