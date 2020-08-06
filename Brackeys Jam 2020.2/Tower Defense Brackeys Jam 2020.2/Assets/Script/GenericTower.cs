@@ -14,7 +14,7 @@ public class GenericTower : MonoBehaviour
     Target CurrentTarget;
     bool LookedOn = false;
     public float InRangeRotation = 1;
-    public float turnspeed = 10;
+    public float turnSpeed = 10;
 
     //Interact Data
     public int DamageAmount = -1;

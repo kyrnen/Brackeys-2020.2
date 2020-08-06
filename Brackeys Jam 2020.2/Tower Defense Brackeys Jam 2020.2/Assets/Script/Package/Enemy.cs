@@ -71,12 +71,6 @@ public class Enemy : PackageClass
     public void Damage()
     {
         TakeDamage(20);
-
-        if (currenthealth <= 0)
-        {
-            Destroy(gameObject);
-
-        }
     }
 
     protected override void ChangeDirection()

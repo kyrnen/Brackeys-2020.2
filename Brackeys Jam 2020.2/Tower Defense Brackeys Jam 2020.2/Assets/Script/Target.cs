@@ -7,9 +7,12 @@ public class Target : MonoBehaviour
     bool IsBad = false;
     int AttackID = 1;
     float Health = 100;
-    public MoneyManager MM;
+    private MoneyManager MM;
     float[] DamageMultiplyer = new float[] { 0.8f, 1.2f, 0.5f };
-
+    private void Start()
+    {
+        MM = GameObject.Find("SystemFirewall").GetComponent<MoneyManager>();
+    }
     public void AddToList(int TowerID)
     {
         CheckedBy.Add(TowerID);
@@ -25,6 +28,7 @@ public class Target : MonoBehaviour
         Health -= Amount * DamageMultiplyer[Type];
         if (Health <= 0)
         {
+            Debug.Log("Enemy Died");
             MM.EnenyDied();
             Destroy(gameObject);
 

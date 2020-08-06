@@ -5,6 +5,8 @@ public class Firewall : MonoBehaviour
     [SerializeField] private int MaxHealth = 100;
     public int currentHealth;
 
+
+
     private void Start()
     {
         currentHealth = MaxHealth;
