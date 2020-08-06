@@ -35,16 +35,18 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        //Lock onto target
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (fireCountdown <= 0f)
-        {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+        if (target.gameObject.GetComponent<Enemy>().isBad)
+        { 
+            //Lock onto target
+            Vector3 dir = target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(rotatingObject.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            if (fireCountdown <= 0f)
+            {
+                Shoot();
+                fireCountdown = 1f / fireRate;
+            }
         }
 
         fireCountdown -= Time.deltaTime;

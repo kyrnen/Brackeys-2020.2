@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
             return;
         }
 
+
+        
         Vector3 dir = target.position - transform.position;
         float distThisFrame = speed * Time.deltaTime;
 
@@ -32,6 +34,7 @@ public class Bullet : MonoBehaviour
 
         transform.Translate(dir.normalized * distThisFrame, Space.World);
 
+
     }
 
     void HitTarget()
@@ -39,7 +42,7 @@ public class Bullet : MonoBehaviour
         GameObject effectInst = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectInst, 2f);
 
-        Destroy(target.gameObject);
+        target.gameObject.GetComponent<Enemy>().Damage();
         Destroy(gameObject);
     }
 

@@ -47,7 +47,6 @@ public class Enemy : PackageClass
     {
         Move();
         CheckDirection();
-        Damage();
     }
 
     void CheckDirection()
@@ -80,10 +79,8 @@ public class Enemy : PackageClass
     }
     void Damage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
+        TakeDamage(20);
+
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
