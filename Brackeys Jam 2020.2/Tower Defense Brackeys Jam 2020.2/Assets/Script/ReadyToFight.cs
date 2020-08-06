@@ -7,10 +7,6 @@ public class ReadyToFight : MonoBehaviour
 {
     public bool ReadyToFightButton;
     public Button texttodisable;
-    private void Start()
-    {
-        Button btn = texttodisable.GetComponent<Button>();
-    }
 
     void Update()
     {
@@ -18,9 +14,7 @@ public class ReadyToFight : MonoBehaviour
         {
             GetComponent<WaveManager>().enabled = true;
         }
-        texttodisable.onClick.AddListener(OnPressReadyToFightButton);
     }
-    
     public void OnPressReadyToFightButton()
     {
         ReadyToFightButton = true;
