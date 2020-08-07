@@ -115,6 +115,7 @@ public class Turret : MonoBehaviour
         //  shoot a little beam
         //  change hasBeenScanned to True
         //  change asset of enemy appropriately
+        //  delay before new scan is made
     }
 
     void Beam()

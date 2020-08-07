@@ -165,7 +165,7 @@ MonoBehaviour:
   lineRender: {fileID: 0}
   delay: 5
   delayMax: 5
-  useScanner: 0
+  useScanner: 1
   enemyTag: Package
   rotatingObject: {fileID: 2276742959171107381}
   turnSpeed: 10
