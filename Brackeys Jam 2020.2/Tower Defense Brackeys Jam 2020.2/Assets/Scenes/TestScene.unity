@@ -3155,7 +3155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e87faff92896b428e7be6b17139dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyClass: {fileID: 0}
   AmountOfmoney: 1000
   Text: {fileID: 0}
 --- !u!1001 &544421744
