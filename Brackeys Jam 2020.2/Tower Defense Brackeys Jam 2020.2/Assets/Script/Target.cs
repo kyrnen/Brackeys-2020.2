@@ -9,10 +9,12 @@ public class Target : MonoBehaviour
     float Health = 100;
     private MoneyManager MM;
     float[] DamageMultiplyer = new float[] { 0.8f, 1.2f, 0.5f };
+
     private void Start()
     {
         MM = GameObject.Find("SystemFirewall").GetComponent<MoneyManager>();
     }
+
     public void AddToList(int TowerID)
     {
         CheckedBy.Add(TowerID);
@@ -43,7 +45,7 @@ public class Target : MonoBehaviour
     public void SetFlagg(bool State)
     {
         IsBad = State;
-        if (IsBad == true)
+        if (IsBad)
         {
             GetComponent<Renderer>().material.color = Color.red;
         }

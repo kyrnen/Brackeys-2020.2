@@ -109,6 +109,15 @@ public class Turret : MonoBehaviour
         rotatingObject.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
+    void Scan()
+    {
+        //if !hasBeenScanned
+        //  shoot a little beam
+        //  change hasBeenScanned to True
+        //  change asset of enemy appropriately
+        //  delay before new scan is made
+    }
+
     void Beam()
     {
         if (!lineRender.enabled)

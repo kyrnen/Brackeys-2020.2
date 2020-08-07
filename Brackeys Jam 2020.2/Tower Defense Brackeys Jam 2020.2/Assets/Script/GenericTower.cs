@@ -12,7 +12,6 @@ public class GenericTower : MonoBehaviour
     bool Charged = false;
     string TargetTag = "Package";
     Target CurrentTarget;
-    bool LookedOn = false;
     public float InRangeRotation = 1;
     public float turnSpeed = 10;
 
@@ -31,34 +30,34 @@ public class GenericTower : MonoBehaviour
         {
             GetPackages();
         }
-        else if(Charged && CurrentTarget != null)
+        else if (Charged && CurrentTarget != null)
         {
-            if(LockOnTarget() <= InRangeRotation)
+            if (LockOnTarget() <= InRangeRotation)
             {
                 Activate();
+                Debug.Log("Activated");
             }
         }
-        else if(CurrentTime <= ReloadTime)
+        else if (CurrentTime <= ReloadTime)
         {
             CurrentTime++;
         }
-        if(CurrentTime == ReloadTime && !Charged)
+        if (CurrentTime == ReloadTime && !Charged)
         {
             Charged = true;
             CurrentTime = 0;
         }
-        Debug.Log(CurrentTime);
     }
 
     void Activate()
     {
-        if(CurrentTarget != null)
+        if (CurrentTarget != null)
         {
             Debug.Log(CurrentTarget);
 
-            if(ScanTypes.Length != 0)
+            if (ScanTypes.Length != 0)
             {
-                if(ScanTypes.Contains(CurrentTarget.GetTypeID()))
+                if (ScanTypes.Contains(CurrentTarget.GetTypeID()))
                 {
                     CurrentTarget.SetFlagg(true);
                     CurrentTarget.AddToList(TowerID);
@@ -66,9 +65,9 @@ public class GenericTower : MonoBehaviour
                 }
             }
 
-            if(DamageAmount != -1 && CurrentTarget.GetFlagg() == true)
+            if (DamageAmount != -1 && CurrentTarget.GetFlagg() == true)
             {
-                CurrentTarget.Damage(DamageAmount,DamageType);
+                CurrentTarget.Damage(DamageAmount, DamageType);
                 Debug.Log("Attacked Package");
             }
 
@@ -78,12 +77,14 @@ public class GenericTower : MonoBehaviour
 
     float LockOnTarget()
     {
-        //Lock onto target        
+        //Lock onto target
         Vector3 dir = CurrentTarget.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        return transform.rotation.y;
+        float RotationChange = lookRotation.eulerAngles.y - rotation.y;
+        Debug.Log(RotationChange);
+        return RotationChange;
     }
 
     void GetPackages()

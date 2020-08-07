@@ -11,9 +11,9 @@ public class Enemy : PackageClass
     public int currenthealth;
 
     public MoneyManager moneyManager;
-    
+
     [SerializeField] private string enemyName;
-    
+
     public void SetHealth(int health)
     {
         slider.value = health;
@@ -68,6 +68,7 @@ public class Enemy : PackageClass
             }
         }
     }
+
     public void Damage()
     {
         TakeDamage(20);
@@ -98,6 +99,8 @@ public class Enemy : PackageClass
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
         SetHealth(currenthealth);
+
+        if (currenthealth <= 0f) Destroy(gameObject);
     }
 
     public void FlipDirection()
