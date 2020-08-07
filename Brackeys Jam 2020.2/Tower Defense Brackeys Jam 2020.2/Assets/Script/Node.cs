@@ -17,13 +17,14 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(turret != null)
+     /* if(turret != null)
         {
             Debug.Log("Can't build there!");
             return;
-        }
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        } */
+        // GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
+        GameObject turretToBuild = TurretManager.instance.currentTurret;
+        turret = Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
     }
 
     void OnMouseEnter()
