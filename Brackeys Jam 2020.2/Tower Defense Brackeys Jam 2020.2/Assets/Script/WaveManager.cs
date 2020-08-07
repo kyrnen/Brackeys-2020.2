@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
 
 	public Wave[] waves;
 	private int nextwave = 0;
+	public Target target;
 
 	public Transform[] spawnPoints;
 	public float timeBettweenWaves = 5f;
@@ -97,10 +98,29 @@ public class WaveManager : MonoBehaviour
 		yield break;
 	}
 
+
 	void SpwanEnemy(Transform _enemy)
 	{
-
 		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-		Instantiate(_enemy, _sp.position, _sp.rotation);	
+		Instantiate(_enemy, _sp.position, _sp.rotation);
+		PickRandomNumber(1);
+	}
+
+
+	private void PickRandomNumber(int maxInt)
+	{
+		int RandomNumber = Random.Range(1, maxInt + 1);
+
+		if(RandomNumber == 1)
+		{
+			target.IsBad = false;
+		}
+		
+		if(RandomNumber == 2)
+		{
+			target.IsBad = true;
+		}
+		Debug.Log(target.IsBad);
+		Debug.Log(RandomNumber);
 	}
 }

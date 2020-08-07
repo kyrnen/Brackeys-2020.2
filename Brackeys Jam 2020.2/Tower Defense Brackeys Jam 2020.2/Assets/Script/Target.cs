@@ -4,7 +4,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     List<int> CheckedBy = new List<int>();
-    bool IsBad = false;
+    public bool IsBad = false;
     int AttackID = 1;
     float Health = 100;
     private MoneyManager MM;
