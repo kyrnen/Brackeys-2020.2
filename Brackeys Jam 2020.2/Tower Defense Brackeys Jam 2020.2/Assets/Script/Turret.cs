@@ -54,7 +54,9 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        if (target.gameObject.GetComponent<Enemy>().isBad)
+        Enemy targetPackage = target.gameObject.GetComponent<Enemy>();
+
+        if (targetPackage.GetScanStatus())
         {
             LockOnTarget();
 
@@ -81,12 +83,7 @@ public class Turret : MonoBehaviour
                     delay = delayMax;
                 }
                 
-            }
-            else if (useScanner)
-            {
-                Scan();
-                fireCountdown = 1.3f;
-            }
+            } 
             else
             {
                 if (fireCountdown <= 0f)
@@ -96,6 +93,17 @@ public class Turret : MonoBehaviour
                 }
             }
 
+            fireCountdown -= Time.deltaTime;
+        }
+        else if (!targetPackage.GetScanStatus())
+        {
+           if (useScanner)
+            {
+                LockOnTarget();
+
+                Scan();
+                fireCountdown = 1.3f;
+            }
             fireCountdown -= Time.deltaTime;
         }
         
@@ -113,15 +121,13 @@ public class Turret : MonoBehaviour
     void Scan()
     {
         Enemy e = target.gameObject.GetComponent<Enemy>();
-        if (!e.GetScanStatus())
-        {
-            GameObject bulletGO = (GameObject)Instantiate(scanBulletPref, firePoint.position, firePoint.rotation);
-            Bullet bullet = bulletGO.GetComponent<Bullet>();
 
-            bullet.Seek(target);
+        GameObject bulletGO = (GameObject)Instantiate(scanBulletPref, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
 
-            e.SetScanned();
-        }
+        bullet.Seek(target);
+
+        e.SetScanned();
         //  change asset of enemy appropriately
     }
 
