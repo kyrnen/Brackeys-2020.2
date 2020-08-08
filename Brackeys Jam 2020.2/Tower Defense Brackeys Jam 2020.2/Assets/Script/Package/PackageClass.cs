@@ -33,16 +33,9 @@ public class PackageClass : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
     }
 
-    public bool CheckScannedAndBad()
+    public bool CheckScannedAndNotBad()
     {
-        if(scanned)
-        {
-            return isBad;
-        }
-        else
-        {
-            return scanned;
-        }
+        return scanned && !isBad;
     }
 
     public bool GetScanStatus()
@@ -57,11 +50,11 @@ public class PackageClass : MonoBehaviour
 
         if(isBad)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.black;
+            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
         else
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
     }
 

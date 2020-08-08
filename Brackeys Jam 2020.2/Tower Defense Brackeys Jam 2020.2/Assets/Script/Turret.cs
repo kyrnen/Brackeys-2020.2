@@ -95,10 +95,17 @@ public class Turret : MonoBehaviour
             } 
             else
             {
-                if (fireCountdown <= 0f)
+                if (targetPackage.CheckScannedAndNotBad())
                 {
-                    Shoot();
-                    fireCountdown = 1f / fireRate;
+                    return;
+                }
+                else
+                {
+                    if (fireCountdown <= 0f)
+                    {
+                        Shoot();
+                        fireCountdown = 1f / fireRate;
+                    }
                 }
             }
 

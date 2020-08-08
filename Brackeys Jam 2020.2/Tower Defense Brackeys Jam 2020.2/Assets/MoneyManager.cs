@@ -3,21 +3,24 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-    public int AmountOfmoney = 1000;
+    public int Score = 0;
     public Text Text;
+    public string dText = "S C O R E :  ";
 
     void Awake()
     {
-        Text.text = AmountOfmoney.ToString("F2");
+        Text.text = dText + Score.ToString();
     }
 
-    void Update()
+    public void EnenyDied(int score)
     {
-        Text.text = AmountOfmoney.ToString("F2");
+        Score += score;
+        Text.text = dText + Score.ToString();
     }
 
-    public void EnenyDied()
+    public void PackageDelivered(int score)
     {
-        AmountOfmoney += 100;
+        Score += score*3;
+        Text.text = dText + Score.ToString();
     }
 }

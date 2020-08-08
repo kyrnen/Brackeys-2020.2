@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Firewall : MonoBehaviour
 {
     [SerializeField] private int MaxHealth = 100;
     public int currentHealth;
-    public GameManager gm;
+    [SerializeField] public GameManager gm;
+    [SerializeField] public MoneyManager mm;
 
     private void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+        mm = gm.gameObject.GetComponent<MoneyManager>();
         currentHealth = MaxHealth;
     }
 
@@ -16,23 +20,25 @@ public class Firewall : MonoBehaviour
         
         if(collision.gameObject.tag == "Package")
         {
-           
-            Enemy e = collision.gameObject.GetComponent<Enemy>();
+            GameObject package = collision.gameObject;
+            Enemy e = package.GetComponent<Enemy>();
             
-            if (e.isBad)
+            
+            if (e.CheckScannedAndNotBad())
+            {
+                StartCoroutine(AddPoints(e.power));
+                Destroy(package);
+            }
+            else
             {
                 DamageWall(e.power);
-                Destroy(collision.gameObject);
+                Destroy(package);
 
-                if(currentHealth <= 0)
+                if (currentHealth <= 0)
                 {
                     Destroy(gameObject);
                     gm.GameOver();
                 }
-            }
-            else
-            {
-                AddPoints(e.power);
             }
         }
     }
@@ -42,8 +48,9 @@ public class Firewall : MonoBehaviour
         currentHealth -= dmg;
     }
 
-    void AddPoints(int points)
+    IEnumerator AddPoints(int points)
     {
-        Debug.Log("Add points to player score");
+        mm.PackageDelivered(points);
+        yield return null;
     }
 }

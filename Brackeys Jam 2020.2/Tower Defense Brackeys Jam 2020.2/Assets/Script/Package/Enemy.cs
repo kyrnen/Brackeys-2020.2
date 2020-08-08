@@ -9,8 +9,7 @@ public class Enemy : PackageClass
 
     public int MaxHealth;
     public int currenthealth;
-
-    public MoneyManager moneyManager;
+    [SerializeField ]private MoneyManager mm;
 
     [SerializeField] private string enemyName;
 
@@ -28,6 +27,7 @@ public class Enemy : PackageClass
 
     private void Start()
     {
+        mm = FindObjectOfType<MoneyManager>();
         currenthealth = MaxHealth;
         Intro();
         SetMaxHealth(MaxHealth);
@@ -100,7 +100,11 @@ public class Enemy : PackageClass
         fill.color = gradient.Evaluate(slider.normalizedValue);
         SetHealth(currenthealth);
 
-        if (currenthealth <= 0f) Destroy(gameObject);
+        if (currenthealth <= 0f)
+        {
+            mm.EnenyDied(power);
+            Destroy(gameObject);
+        }
     }
 
     public void FlipDirection()

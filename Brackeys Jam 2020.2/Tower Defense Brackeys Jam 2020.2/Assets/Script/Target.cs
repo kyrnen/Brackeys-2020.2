@@ -31,7 +31,7 @@ public class Target : MonoBehaviour
         if (Health <= 0)
         {
             Debug.Log("Enemy Died");
-            MM.EnenyDied();
+            MM.EnenyDied(20);
             Destroy(gameObject);
 
         }
