@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 70
   impactEffect: {fileID: 3601352805932561221, guid: 8954b6e9044be184d894f8fd778ec4c9, type: 3}
+  doesDamage: 1
 --- !u!1001 &8684486967235835915
 PrefabInstance:
   m_ObjectHideFlags: 0

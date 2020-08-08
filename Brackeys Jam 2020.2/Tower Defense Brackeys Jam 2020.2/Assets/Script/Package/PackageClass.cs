@@ -54,6 +54,15 @@ public class PackageClass : MonoBehaviour
     {
         if (!scanned)
             scanned = true;
+
+        if(isBad)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.black;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
     }
 
 }
