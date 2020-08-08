@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject[] menus;
+    private int maxMenuIndex;
+
+    private void Start()
     {
-        
+        maxMenuIndex = menus.Length - 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-        
+        for (int i = 0; i < maxMenuIndex; i++)
+        {
+            menus[i].SetActive(false);
+        }
+        menus[maxMenuIndex].SetActive(true);
     }
 }

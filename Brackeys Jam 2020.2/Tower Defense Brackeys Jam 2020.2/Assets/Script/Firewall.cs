@@ -4,6 +4,7 @@ public class Firewall : MonoBehaviour
 {
     [SerializeField] private int MaxHealth = 100;
     public int currentHealth;
+    public GameManager gm;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class Firewall : MonoBehaviour
                 if(currentHealth <= 0)
                 {
                     Destroy(gameObject);
-                    Debug.LogError("Init Game Over");
+                    gm.GameOver();
                 }
             }
             else

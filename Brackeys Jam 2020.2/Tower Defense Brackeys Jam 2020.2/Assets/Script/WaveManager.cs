@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
 	private int nextwave = 0;
 	public Target target;
 	public int enemyCount;
+	public GameObject package;
 
 	public Transform[] spawnPoints;
 	public float timeBettweenWaves = 5f;
@@ -36,27 +37,27 @@ public class WaveManager : MonoBehaviour
 	}
 	void Update()
 	{
-		if (state == SpawnState.WAITING)
-		{
-			if (!EnemyIsAlive())
-			{
-				WaveCompleted();
-			}
-			else
-				return;
-		}
-		if (wavecountdown <= 0)
-		{
-			if (state != SpawnState.SPAWNING)
-			{
-				StartCoroutine(Spawnwaves(waves[nextwave]));
-				//start spawning waves
-			}
-		}
-		else
-		{
-			wavecountdown -= Time.deltaTime;
-		}
+		//if (state == SpawnState.WAITING)
+		//{
+		//	if (!EnemyIsAlive())
+		//	{
+		//		WaveCompleted();
+		//	}
+		//	else
+		//		return;
+		//}
+		//if (wavecountdown <= 0)
+		//{
+		//	if (state != SpawnState.SPAWNING)
+		//	{
+		//		StartCoroutine(Spawnwaves(waves[nextwave]));
+		//		//start spawning waves
+		//	}
+		//}
+		//else
+		//{
+		//	wavecountdown -= Time.deltaTime;
+		//}
 	}
 	bool EnemyIsAlive()
 	{
@@ -99,21 +100,19 @@ public class WaveManager : MonoBehaviour
 		yield break;
 	}
 
-	public void SpawnEnemies(GameObject _enemy)
+	public void Spawn()
+	{
+		StartCoroutine(SpawnEnemies());
+	}
+	IEnumerator SpawnEnemies()
 	{
 		for (int i = 0; i < enemyCount; i++)
 		{
+			yield return new WaitForSeconds(1);
 			Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-			GameObject package = (GameObject)Instantiate(_enemy, _sp.position, _sp.rotation);
-			package.GetComponent<Enemy>().isBad = Random.Range(0, 1) == 0 ? true: false;
-
-			StartCoroutine(Delay());
+			GameObject p = (GameObject)Instantiate(package, _sp.position, _sp.rotation);
+			p.GetComponent<Enemy>().isBad = Random.Range(0, 1) == 0 ? true: false;
 		}
-	}
-
-	IEnumerator Delay()
-	{
-		yield return new WaitForSeconds(1);
 	}
 
 	void SpwanEnemy(Transform _enemy)
