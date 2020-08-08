@@ -17,6 +17,7 @@ public class WaveManager : MonoBehaviour
 	public Wave[] waves;
 	private int nextwave = 0;
 	public Target target;
+	public int enemyCount;
 
 	public Transform[] spawnPoints;
 	public float timeBettweenWaves = 5f;
@@ -98,6 +99,22 @@ public class WaveManager : MonoBehaviour
 		yield break;
 	}
 
+	public void SpawnEnemies(GameObject _enemy)
+	{
+		for (int i = 0; i < enemyCount; i++)
+		{
+			Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+			GameObject package = (GameObject)Instantiate(_enemy, _sp.position, _sp.rotation);
+			package.GetComponent<Enemy>().isBad = Random.Range(0, 1) == 0 ? true: false;
+
+			StartCoroutine(Delay());
+		}
+	}
+
+	IEnumerator Delay()
+	{
+		yield return new WaitForSeconds(1);
+	}
 
 	void SpwanEnemy(Transform _enemy)
 	{
