@@ -208,7 +208,7 @@ MonoBehaviour:
   moveSpeed: 5
   moveForward: 1
   wp: {fileID: 0}
-  scanned: 1
+  scanned: 0
   slider: {fileID: 7289254777251123851}
   gradient:
     serializedVersion: 2
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9760c16a4fa474cbc8509d1710439d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MM: {fileID: 0}
+  IsBad: 0
 --- !u!1 &7289254777716588246
 GameObject:
   m_ObjectHideFlags: 0

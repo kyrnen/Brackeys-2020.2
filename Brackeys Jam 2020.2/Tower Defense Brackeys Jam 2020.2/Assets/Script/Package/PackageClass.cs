@@ -36,7 +36,17 @@ public class PackageClass : MonoBehaviour
     public bool CheckScannedAndBad()
     {
         if(scanned)
+        {
             return isBad;
+        }
+        else
+        {
+            return scanned;
+        }
+    }
+
+    public bool GetScanStatus()
+    {
         return scanned;
     }
 

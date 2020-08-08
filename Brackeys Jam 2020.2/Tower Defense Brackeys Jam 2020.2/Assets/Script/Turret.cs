@@ -22,6 +22,7 @@ public class Turret : MonoBehaviour
     public float delayMax = 5f;
 
     [Header("Use Scan Beam")]
+    public GameObject scanBulletPref;
     public bool useScanner = false;
 
     
@@ -83,8 +84,8 @@ public class Turret : MonoBehaviour
             }
             else if (useScanner)
             {
-                //constantly tag with scanned
-
+                Scan();
+                fireCountdown = 1.3f;
             }
             else
             {
@@ -111,11 +112,17 @@ public class Turret : MonoBehaviour
 
     void Scan()
     {
-        //if !hasBeenScanned
-        //  shoot a little beam
-        //  change hasBeenScanned to True
+        Enemy e = target.gameObject.GetComponent<Enemy>();
+        if (!e.GetScanStatus())
+        {
+            GameObject bulletGO = (GameObject)Instantiate(scanBulletPref, firePoint.position, firePoint.rotation);
+            Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+            bullet.Seek(target);
+
+            e.SetScanned();
+        }
         //  change asset of enemy appropriately
-        //  delay before new scan is made
     }
 
     void Beam()

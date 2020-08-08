@@ -165,6 +165,7 @@ MonoBehaviour:
   lineRender: {fileID: 0}
   delay: 5
   delayMax: 5
+  scanBulletPref: {fileID: 8302714137369726113, guid: f92f23899b1fe1c48b1f75330c03d2b2, type: 3}
   useScanner: 1
   enemyTag: Package
   rotatingObject: {fileID: 2276742959171107381}
