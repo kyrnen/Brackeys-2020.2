@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
 	{
 		if (spawnPoints.Length == 0)
 		{
-			Debug.LogError("no spawn points refrened");
+			Debug.LogError("no spawn points refrenced");
 		}
 		wavecountdown = timeBettweenWaves;
 
@@ -88,7 +88,7 @@ public class WaveManager : MonoBehaviour
 	{
 		state = SpawnState.SPAWNING;
 
-		for (int i = 0; i < _wave.count; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			SpwanEnemy(_wave.enemy);
 			yield return new WaitForSeconds(1f / _wave.rate);
@@ -115,8 +115,7 @@ public class WaveManager : MonoBehaviour
 		{
 			target.IsBad = false;
 		}
-		
-		if(RandomNumber == 2)
+		else if(RandomNumber == 2)
 		{
 			target.IsBad = true;
 		}
