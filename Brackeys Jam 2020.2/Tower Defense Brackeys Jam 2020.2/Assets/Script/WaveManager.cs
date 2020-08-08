@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour
 	public Target target;
 	public int enemyCount;
 	public GameObject package;
+	public GameManager gm;
 
 	public Transform[] spawnPoints;
 	public float timeBettweenWaves = 5f;
@@ -28,6 +29,7 @@ public class WaveManager : MonoBehaviour
 	private SpawnState state = SpawnState.COUNTING;
 	void Start()
 	{
+
 		if (spawnPoints.Length == 0)
 		{
 			Debug.LogError("no spawn points refrenced");
@@ -106,12 +108,12 @@ public class WaveManager : MonoBehaviour
 	}
 	IEnumerator SpawnEnemies()
 	{
-		for (int i = 0; i < enemyCount; i++)
+		while(!gm.gameOver)
 		{
 			yield return new WaitForSeconds(1);
 			Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 			GameObject p = (GameObject)Instantiate(package, _sp.position, _sp.rotation);
-			p.GetComponent<Enemy>().isBad = Random.Range(0, 1) == 0 ? true: false;
+			p.GetComponent<Enemy>().isBad = Random.Range(0, 2) == 0 ? true: false;
 		}
 	}
 

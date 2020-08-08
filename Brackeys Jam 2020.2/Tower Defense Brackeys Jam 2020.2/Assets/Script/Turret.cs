@@ -56,8 +56,17 @@ public class Turret : MonoBehaviour
 
         Enemy targetPackage = target.gameObject.GetComponent<Enemy>();
 
-        if (targetPackage.GetScanStatus())
+        if (!targetPackage.GetScanStatus() && useScanner)
         {
+            
+            LockOnTarget();
+
+            Scan();
+            fireCountdown = 1.3f;
+            
+            fireCountdown -= Time.deltaTime;
+        }
+        else {
             LockOnTarget();
 
             if (useBeam)
@@ -95,18 +104,6 @@ public class Turret : MonoBehaviour
 
             fireCountdown -= Time.deltaTime;
         }
-        else if (!targetPackage.GetScanStatus())
-        {
-           if (useScanner)
-            {
-                LockOnTarget();
-
-                Scan();
-                fireCountdown = 1.3f;
-            }
-            fireCountdown -= Time.deltaTime;
-        }
-        
     }
 
     void LockOnTarget()
